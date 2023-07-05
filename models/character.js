@@ -1,7 +1,8 @@
 const mongoose = require("./connection")
 
 const CharacterSchema = new mongoose.Schema({
-    name: String,
+    username: String,
+    name: {type: String, unique: true, required: true},
     classType: String,
     weapon: String,
     armor: String,
