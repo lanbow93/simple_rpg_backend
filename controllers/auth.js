@@ -13,13 +13,14 @@ router.post("/signup", async (request, response) => {
     try {
         // Salting and hashing password 
         request.body.password = await bcrypt.hash(request.body.password, await bcrypt.genSalt(10))
-
         // Creating user
         const user = await User.create(request.body)
         
         response.status(200).json({status: "User Created", username: user})
     } catch (error) {
-        response.status(400).json(error)
+        console.log(error.message)
+        response.status(400).json({error: error.message})
+        
     }
 })
 
