@@ -12,7 +12,7 @@ const loggedIn = require("./utils/loggedIn")
 const app = express()
 
 app.use(cors({
-    origin: ["http://localhost:5173", "https://rpg-of-legends.netlify.app/"],
+    origin: ["http://localhost:5173", "https://rpg-of-legends.netlify.app"],
     credentials: true
 }))
 app.use(morgan("tiny"))
