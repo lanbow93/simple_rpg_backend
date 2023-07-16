@@ -52,7 +52,7 @@ router.post("/login", async (request, response) => {
 })
 
 router.post("/logout", async (request, response) => {
-    response.clearCookie("token").json({response: "You are Logged Out"})
+    response.clearCookie("token",{path:"/"}).json({response: "You are Logged Out"})
 })
 
 module.exports = router
