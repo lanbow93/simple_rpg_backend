@@ -52,7 +52,7 @@ router.post("/login", async (request, response) => {
 })
 
 router.post("/logout", async (request, response) => {
-    response.clearCookie("token",{path:"/", expires: new Date(0), domain:"https://rpg-of-legends.netlify.app/characters"}).json({response: "You are Logged Out"})
+    response.clearCookie("token",{path:"/"}).json({response: "You are Logged Out"})
 })
 
 module.exports = router
