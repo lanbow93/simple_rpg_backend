@@ -52,13 +52,13 @@ router.post("/login", async (request, response) => {
 })
 
 router.post("/logout", async (request, response) => {
-    const token = await jwt.sign(payload, SECRET)
-                response.cookie("token", token, {
-                    httpOnly: true,
-                    path: "/",
-                    expiresIn: 1,
-                    sameSite: "none",
-                    secure: request.hostname === "http://localhost:5173" ? false : true,}).json({payload, status: "logged out"})
-})
+  response.cookie("token", "", {
+    httpOnly: true,
+    path: "/",
+    expires: new Date(0), // Set the expiration to a past date to delete the cookie
+    sameSite: "none",
+    secure: request.hostname === "http://localhost:5173" ? false : true, 
+  }).status(200).json({ status: "logged out" });
+});
 
 module.exports = router
