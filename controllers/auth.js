@@ -39,7 +39,7 @@ router.post("/login", async (request, response) => {
                     httpOnly: true,
                     path: "/",
                     sameSite: "none",
-                    secure: request.hostname === "localhost" ? false : true,}).json({payload, status: "logged in"})
+                    secure: request.hostname === "http://localhost:5173" ? false : true,}).json({payload, status: "logged in"})
                 } else {
                     response.status(400).json({error: "Password does not match"})
                 } 
@@ -52,6 +52,14 @@ router.post("/login", async (request, response) => {
 })
 
 router.post("/logout", async (request, response) => {
+    const token = await jwt.sign(payload, SECRET)
+                response.cookie("token", token, {
+                    httpOnly: true,
+                    path: "/",
+                    expiresIn: 1,
+                    sameSite: "none",
+                    secure: request.hostname === "http://localhost:5173" ? false : true,}).json({payload, status: "logged in"})
+
     response.clearCookie("token",{path:"/"}).json({response: "You are Logged Out"})
 })
 
