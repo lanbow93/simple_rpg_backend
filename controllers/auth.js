@@ -59,8 +59,6 @@ router.post("/logout", async (request, response) => {
                     expiresIn: 1,
                     sameSite: "none",
                     secure: request.hostname === "http://localhost:5173" ? false : true,}).json({payload, status: "logged in"})
-
-    response.clearCookie("token",{path:"/"}).json({response: "You are Logged Out"})
 })
 
 module.exports = router
